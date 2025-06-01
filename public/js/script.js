@@ -147,6 +147,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const podcastPlayer = document.getElementById('fixedPodcastPlayer');
   const podcastPlayerToggle = document.getElementById('podcastPlayerToggle');
+  const podcastAudio = document.getElementById('podcastAudio');
+  const replayPodcastButton = document.getElementById('replayPodcastButton');
 
   if (podcastPlayer && podcastPlayerToggle) {
     const setPodcastPlayerState = (isExpanded) => {
@@ -155,11 +157,6 @@ document.addEventListener('DOMContentLoaded', function () {
         podcastPlayerToggle.setAttribute('aria-label', 'Đóng Podcast');
       } else {
         podcastPlayer.classList.remove('is-expanded');
-
-        const audioElement = podcastPlayer.querySelector('audio');
-        if (audioElement && !audioElement.paused) {
-          audioElement.pause();
-        }
         podcastPlayerToggle.setAttribute('aria-label', 'Mở Podcast');
       }
       podcastPlayerToggle.setAttribute('aria-expanded', isExpanded.toString());
@@ -178,5 +175,12 @@ document.addEventListener('DOMContentLoaded', function () {
       initialPodcastExpandedState = true;
     }
     setPodcastPlayerState(initialPodcastExpandedState);
+
+    if (replayPodcastButton && podcastAudio) {
+      replayPodcastButton.addEventListener('click', () => {
+        podcastAudio.currentTime = 0;
+        podcastAudio.play();
+      });
+    }
   }
 });
