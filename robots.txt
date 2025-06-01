@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: http://natswarchuan.github.io/meaning-of-date/sitemap.xml
